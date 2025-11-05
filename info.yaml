@@ -1,0 +1,16 @@
+---
+- name: Display a simple welcome message
+  ansible.builtin.debug:
+    msg: "✅ Automation started successfully on {{ inventory_hostname }}."
+
+- name: Report RHEL Distribution and Version
+  ansible.builtin.debug:
+    msg: "OS Details: {{ ansible_distribution }} {{ ansible_distribution_major_version }} (Kernel: {{ ansible_kernel }})"
+
+- name: Check the system's current uptime
+  ansible.builtin.command: uptime
+  register: system_uptime
+      
+- name: Display the result of the uptime command
+  ansible.builtin.debug:
+    msg: "System Uptime: {{ system_uptime.stdout }}"
